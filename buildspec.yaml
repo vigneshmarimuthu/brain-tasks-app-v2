@@ -1,0 +1,14 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - echo "Skipping npm install because only static files exist."
+  build:
+    commands:
+      - echo "No build step required. Using prebuilt dist/ files."
+artifacts:
+  files:
+    - '**/*'
+  base-directory: dist
+  discard-paths: no
