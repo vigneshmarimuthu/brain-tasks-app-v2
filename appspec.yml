@@ -1,9 +1,9 @@
 version: 0.0
-Resources:
-  - TargetService:
-      Type: AWS::EKS::Service
-      Properties:
-        TaskDefinition: ""
+os: linux
+files:
+  - source: /
+    destination: /tmp/Brain-Tasks-App
+
 hooks:
   BeforeInstall:
     - location: scripts/update-kubeconfig.sh
