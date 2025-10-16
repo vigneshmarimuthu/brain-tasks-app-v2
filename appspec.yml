@@ -1,0 +1,15 @@
+version: 0.0
+Resources:
+  - TargetService:
+      Type: AWS::EKS::Service
+      Properties:
+        TaskDefinition: ""
+hooks:
+  BeforeInstall:
+    - location: scripts/update-kubeconfig.sh
+      timeout: 300
+      runas: root
+  AfterInstall:
+    - location: scripts/deploy-to-eks.sh
+      timeout: 600
+      runas: root
