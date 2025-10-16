@@ -1,11 +1,10 @@
-FROM node:18-alpine AS builder
-WORKDIR /app
-COPY package*.json ./
-RUN npm ci
-COPY . .
-RUN npm run build
-
 FROM public.ecr.aws/nginx/nginx:stable-alpine
-COPY --from=builder /app/build /usr/share/nginx/html
+
+# Copy the dist folder contents to Nginx HTML directory
+COPY dist/ /usr/share/nginx/html
+
+# Expose port 80
 EXPOSE 80
+
+# Start Nginx
 CMD ["nginx", "-g", "daemon off;"]
